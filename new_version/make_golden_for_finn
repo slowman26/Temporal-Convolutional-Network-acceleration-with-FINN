@@ -1,0 +1,196 @@
+from pathlib import Path
+import numpy as np
+import torch
+
+# 改成你的模型定义 import
+# from your_model_file import ECG5000FullQuantTCN
+from newnet import ECG5000FullQuantTCN
+
+
+TEST_TXT = Path(r"C:\Users\12209\Desktop\Thesis\pytorch-tcn\datasets\ECG5000\ECG5000_TEST.txt")
+MODEL_CKPT = Path(r"C:\Users\12209\Desktop\Thesis\pytorch-tcn\new_version\best_qtcn_model.pth")
+
+OUT_DIR = Path(r"C:\Users\12209\Desktop\Thesis\pytorch-tcn\new_version\golden_pynq")
+OUT_DIR.mkdir(parents=True, exist_ok=True)
+
+PER_CLASS = None
+
+device = torch.device("cpu")
+
+
+def load_ecg5000_txt(path):
+    data = np.loadtxt(str(path), dtype=np.float32)
+    labels_raw = data[:, 0].astype(np.int64)
+    x_raw = data[:, 1:].astype(np.float32)
+
+    if sorted(np.unique(labels_raw).tolist()) == [1, 2, 3, 4, 5]:
+        labels = labels_raw - 1
+    else:
+        labels = labels_raw
+
+    labels = labels.astype(np.int64)
+    return x_raw, labels
+
+
+def get_q_int_from_quant_tensor(q):
+    """
+    Brevitas QuantTensor:
+        q.value is dequantized quantized value
+        q.scale is scale
+        q.zero_point is zero point
+
+    Hardware idt=INT8 should receive integer-domain values.
+    """
+    q_value = q.value.detach().cpu()
+    q_scale = q.scale.detach().cpu()
+    q_zp = q.zero_point.detach().cpu()
+
+    q_int = torch.round(q_value / q_scale + q_zp)
+    q_int = torch.clamp(q_int, -128, 127)
+
+    return q_int.numpy().astype(np.float32)
+
+
+def main():
+    x_raw, labels = load_ecg5000_txt(TEST_TXT)
+
+    chosen = []
+    for c in range(5):
+        idx = np.where(labels == c)[0]
+        chosen.extend(idx[:PER_CLASS].tolist())
+
+    chosen = np.asarray(chosen, dtype=np.int32)
+
+    x_raw_sub = x_raw[chosen]
+    labels_sub = labels[chosen].astype(np.int32)
+
+    # Your model expects [N, C, L, 1]
+    x_t = torch.from_numpy(x_raw_sub).float().reshape(-1, 1, 140, 1).to(device)
+
+    model = ECG5000FullQuantTCN(
+    num_classes=5,
+    seq_len=140,
+        num_inputs=1,
+        num_channels=(16, 16, 32),
+        kernel_size=3,
+        dropout=0.0,
+        causal=True,
+    ).to(device)
+
+    ckpt = torch.load(str(MODEL_CKPT), map_location=device)
+
+    if isinstance(ckpt, dict) and "model_state_dict" in ckpt:
+        state_dict = ckpt["model_state_dict"]
+    elif isinstance(ckpt, dict) and "state_dict" in ckpt:
+        state_dict = ckpt["state_dict"]
+    else:
+        state_dict = ckpt
+
+    load_result = model.load_state_dict(state_dict, strict=False)
+
+    print("\n[load_state_dict]")
+    print("missing keys:")
+    for k in load_result.missing_keys:
+        print("  ", k)
+
+    print("unexpected keys:")
+    for k in load_result.unexpected_keys:
+        print("  ", k)
+
+    # 只允许缺 pad_quant，因为你现在 forward 里没有用 pad_quant
+    bad_missing = [
+        k for k in load_result.missing_keys
+        if ".pad_quant." not in k
+    ]
+
+    if len(bad_missing) > 0:
+        raise RuntimeError(
+            "There are missing keys not related to unused pad_quant:\n"
+            + "\n".join(bad_missing)
+        )
+
+    if len(load_result.unexpected_keys) > 0:
+        print("[warn] There are unexpected keys in checkpoint.")
+
+    model.eval()
+
+    with torch.no_grad():
+        # input quant tensor
+        q_in = model.input_quant(x_t)
+        x_int8 = get_q_int_from_quant_tensor(q_in)
+
+        # manually run the same forward, but keep classifier QuantTensor
+        h = model.backbone(q_in)
+        q_out = model.classifier(h)
+
+        # dequantized float output, equivalent to model(x_t)
+        y_float = q_out.value.detach().cpu().numpy().astype(np.float32)
+
+        # output scale / zero point
+        y_scale = q_out.scale.detach().cpu().numpy().astype(np.float32)
+        y_zp = q_out.zero_point.detach().cpu().numpy().astype(np.float32)
+
+        # integer-domain output corresponding to FINN odt=INT32
+        y_int = torch.round(q_out.value / q_out.scale + q_out.zero_point)
+        y_int = y_int.detach().cpu().numpy().astype(np.float32)
+
+        y_float_2d = y_float.reshape(y_float.shape[0], -1)
+        y_int_2d = y_int.reshape(y_int.shape[0], -1)
+
+        pred_float = np.argmax(y_float_2d, axis=1).astype(np.int32)
+        pred_int = np.argmax(y_int_2d, axis=1).astype(np.int32)
+
+    print("chosen:", chosen)
+    print("labels:", labels_sub)
+
+    print("\n[input quant]")
+    print("x_int8 shape:", x_int8.shape)
+    print("x_int8 first sample first 10:")
+    print(x_int8[0].reshape(-1)[:10])
+    print("input scale:", q_in.scale.detach().cpu().numpy())
+    print("input zero_point:", q_in.zero_point.detach().cpu().numpy())
+
+    print("\n[output quant]")
+    print("y_float shape:", y_float.shape)
+    print("y_int shape:", y_int.shape)
+    print("output scale shape:", y_scale.shape)
+    print("output scale:", y_scale)
+    print("output zero_point:", y_zp)
+
+    print("\nfirst 5 y_float:")
+    print(y_float_2d[:5])
+
+    print("\nfirst 5 y_int:")
+    print(y_int_2d[:5])
+
+    print("\npred_float distribution:", np.bincount(pred_float, minlength=5))
+    print("pred_int distribution:", np.bincount(pred_int, minlength=5))
+    print("label distribution:", np.bincount(labels_sub, minlength=5))
+
+    print("software acc float:", float(np.mean(pred_float == labels_sub)))
+    print("software acc int  :", float(np.mean(pred_int == labels_sub)))
+    print("float/int pred match:", float(np.mean(pred_float == pred_int)))
+
+    print("#===========================================#")
+    print("I want to see here")
+    print("q_in.scale:", q_in.scale)
+    print("x_int8 first 20:", x_int8[0].reshape(-1)[:20])
+    print("y_int first sample:", y_int_2d[0])
+    print("#===========================================#")
+    
+    np.save(OUT_DIR / "chosen_indices_golden.npy", chosen.astype(np.int32))
+    np.save(OUT_DIR / "x_int8_golden.npy", x_int8.astype(np.float32))
+    np.save(OUT_DIR / "y_label_golden.npy", labels_sub.astype(np.int32))
+
+    np.save(OUT_DIR / "y_model_out_float_golden.npy", y_float.astype(np.float32))
+    np.save(OUT_DIR / "y_model_out_int_golden.npy", y_int.astype(np.float32))
+
+    np.save(OUT_DIR / "y_model_pred_float_golden.npy", pred_float.astype(np.int32))
+    np.save(OUT_DIR / "y_model_pred_int_golden.npy", pred_int.astype(np.int32))
+
+    np.save(OUT_DIR / "y_output_scale_golden.npy", y_scale.astype(np.float32))
+    np.save(OUT_DIR / "y_output_zero_point_golden.npy", y_zp.astype(np.float32))
+
+
+if __name__ == "__main__":
+    main()
