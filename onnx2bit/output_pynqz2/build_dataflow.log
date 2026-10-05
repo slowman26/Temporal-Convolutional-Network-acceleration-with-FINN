@@ -1,0 +1,278 @@
+[2026-04-03 11:36:49,976] Running step: step_qonnx_to_finn [1/19]
+[2026-04-03 11:36:50,796] /home/slowman/Desktop/project/Thesis/finn/deps/qonnx/src/qonnx/transformation/extract_conv_bias.py:52: UserWarning: Could not extract bias from node input: "Quant_20_out0"
+[2026-04-03 11:36:50,796] input: "Quant_5_out0"
+[2026-04-03 11:36:50,796] input: "Quant_6_out0"
+[2026-04-03 11:36:50,796] output: "Conv_0_out0"
+[2026-04-03 11:36:50,797] name: "Conv_0"
+[2026-04-03 11:36:50,797] op_type: "Conv"
+[2026-04-03 11:36:50,797] attribute {
+[2026-04-03 11:36:50,797]   name: "dilations"
+[2026-04-03 11:36:50,797]   ints: 1
+[2026-04-03 11:36:50,797]   type: INTS
+[2026-04-03 11:36:50,797] }
+[2026-04-03 11:36:50,797] attribute {
+[2026-04-03 11:36:50,797]   name: "group"
+[2026-04-03 11:36:50,797]   i: 1
+[2026-04-03 11:36:50,797]   type: INT
+[2026-04-03 11:36:50,797] }
+[2026-04-03 11:36:50,797] attribute {
+[2026-04-03 11:36:50,797]   name: "kernel_shape"
+[2026-04-03 11:36:50,797]   ints: 1
+[2026-04-03 11:36:50,797]   type: INTS
+[2026-04-03 11:36:50,797] }
+[2026-04-03 11:36:50,798] attribute {
+[2026-04-03 11:36:50,798]   name: "pads"
+[2026-04-03 11:36:50,798]   ints: 0
+[2026-04-03 11:36:50,798]   ints: 0
+[2026-04-03 11:36:50,798]   type: INTS
+[2026-04-03 11:36:50,798] }
+[2026-04-03 11:36:50,798] attribute {
+[2026-04-03 11:36:50,798]   name: "strides"
+[2026-04-03 11:36:50,798]   ints: 1
+[2026-04-03 11:36:50,798]   type: INTS
+[2026-04-03 11:36:50,798] }
+[2026-04-03 11:36:50,798] 
+[2026-04-03 11:36:50,798]   warnings.warn(f"Could not extract bias from node {n}")
+[2026-04-03 11:36:50,799] /home/slowman/Desktop/project/Thesis/finn/deps/qonnx/src/qonnx/transformation/extract_conv_bias.py:52: UserWarning: Could not extract bias from node input: "Quant_21_out0"
+[2026-04-03 11:36:50,799] input: "Quant_1_out0"
+[2026-04-03 11:36:50,799] input: "Quant_2_out0"
+[2026-04-03 11:36:50,799] output: "Conv_1_out0"
+[2026-04-03 11:36:50,799] name: "Conv_1"
+[2026-04-03 11:36:50,799] op_type: "Conv"
+[2026-04-03 11:36:50,799] attribute {
+[2026-04-03 11:36:50,799]   name: "dilations"
+[2026-04-03 11:36:50,799]   ints: 1
+[2026-04-03 11:36:50,800]   type: INTS
+[2026-04-03 11:36:50,800] }
+[2026-04-03 11:36:50,800] attribute {
+[2026-04-03 11:36:50,800]   name: "group"
+[2026-04-03 11:36:50,800]   i: 1
+[2026-04-03 11:36:50,800]   type: INT
+[2026-04-03 11:36:50,800] }
+[2026-04-03 11:36:50,800] attribute {
+[2026-04-03 11:36:50,800]   name: "kernel_shape"
+[2026-04-03 11:36:50,800]   ints: 3
+[2026-04-03 11:36:50,800]   type: INTS
+[2026-04-03 11:36:50,800] }
+[2026-04-03 11:36:50,800] attribute {
+[2026-04-03 11:36:50,800]   name: "pads"
+[2026-04-03 11:36:50,800]   ints: 0
+[2026-04-03 11:36:50,800]   ints: 0
+[2026-04-03 11:36:50,800]   type: INTS
+[2026-04-03 11:36:50,800] }
+[2026-04-03 11:36:50,800] attribute {
+[2026-04-03 11:36:50,800]   name: "strides"
+[2026-04-03 11:36:50,800]   ints: 1
+[2026-04-03 11:36:50,801]   type: INTS
+[2026-04-03 11:36:50,801] }
+[2026-04-03 11:36:50,801] 
+[2026-04-03 11:36:50,801]   warnings.warn(f"Could not extract bias from node {n}")
+[2026-04-03 11:36:50,801] /home/slowman/Desktop/project/Thesis/finn/deps/qonnx/src/qonnx/transformation/extract_conv_bias.py:52: UserWarning: Could not extract bias from node input: "Quant_23_out0"
+[2026-04-03 11:36:50,801] input: "Quant_3_out0"
+[2026-04-03 11:36:50,801] input: "Quant_4_out0"
+[2026-04-03 11:36:50,801] output: "Conv_2_out0"
+[2026-04-03 11:36:50,801] name: "Conv_2"
+[2026-04-03 11:36:50,801] op_type: "Conv"
+[2026-04-03 11:36:50,801] attribute {
+[2026-04-03 11:36:50,801]   name: "dilations"
+[2026-04-03 11:36:50,801]   ints: 1
+[2026-04-03 11:36:50,801]   type: INTS
+[2026-04-03 11:36:50,801] }
+[2026-04-03 11:36:50,802] attribute {
+[2026-04-03 11:36:50,802]   name: "group"
+[2026-04-03 11:36:50,802]   i: 1
+[2026-04-03 11:36:50,802]   type: INT
+[2026-04-03 11:36:50,802] }
+[2026-04-03 11:36:50,802] attribute {
+[2026-04-03 11:36:50,802]   name: "kernel_shape"
+[2026-04-03 11:36:50,802]   ints: 3
+[2026-04-03 11:36:50,802]   type: INTS
+[2026-04-03 11:36:50,802] }
+[2026-04-03 11:36:50,802] attribute {
+[2026-04-03 11:36:50,802]   name: "pads"
+[2026-04-03 11:36:50,802]   ints: 0
+[2026-04-03 11:36:50,802]   ints: 0
+[2026-04-03 11:36:50,802]   type: INTS
+[2026-04-03 11:36:50,802] }
+[2026-04-03 11:36:50,802] attribute {
+[2026-04-03 11:36:50,802]   name: "strides"
+[2026-04-03 11:36:50,802]   ints: 1
+[2026-04-03 11:36:50,803]   type: INTS
+[2026-04-03 11:36:50,803] }
+[2026-04-03 11:36:50,803] 
+[2026-04-03 11:36:50,803]   warnings.warn(f"Could not extract bias from node {n}")
+[2026-04-03 11:36:50,803] /home/slowman/Desktop/project/Thesis/finn/deps/qonnx/src/qonnx/transformation/extract_conv_bias.py:52: UserWarning: Could not extract bias from node input: "Quant_26_out0"
+[2026-04-03 11:36:50,803] input: "Quant_7_out0"
+[2026-04-03 11:36:50,803] input: "Quant_8_out0"
+[2026-04-03 11:36:50,803] output: "Conv_3_out0"
+[2026-04-03 11:36:50,803] name: "Conv_3"
+[2026-04-03 11:36:50,803] op_type: "Conv"
+[2026-04-03 11:36:50,803] attribute {
+[2026-04-03 11:36:50,803]   name: "dilations"
+[2026-04-03 11:36:50,804]   ints: 2
+[2026-04-03 11:36:50,804]   type: INTS
+[2026-04-03 11:36:50,804] }
+[2026-04-03 11:36:50,804] attribute {
+[2026-04-03 11:36:50,804]   name: "group"
+[2026-04-03 11:36:50,804]   i: 1
+[2026-04-03 11:36:50,804]   type: INT
+[2026-04-03 11:36:50,804] }
+[2026-04-03 11:36:50,804] attribute {
+[2026-04-03 11:36:50,804]   name: "kernel_shape"
+[2026-04-03 11:36:50,804]   ints: 3
+[2026-04-03 11:36:50,804]   type: INTS
+[2026-04-03 11:36:50,804] }
+[2026-04-03 11:36:50,804] attribute {
+[2026-04-03 11:36:50,804]   name: "pads"
+[2026-04-03 11:36:50,804]   ints: 0
+[2026-04-03 11:36:50,804]   ints: 0
+[2026-04-03 11:36:50,804]   type: INTS
+[2026-04-03 11:36:50,804] }
+[2026-04-03 11:36:50,804] attribute {
+[2026-04-03 11:36:50,804]   name: "strides"
+[2026-04-03 11:36:50,804]   ints: 1
+[2026-04-03 11:36:50,804]   type: INTS
+[2026-04-03 11:36:50,804] }
+[2026-04-03 11:36:50,805] 
+[2026-04-03 11:36:50,805]   warnings.warn(f"Could not extract bias from node {n}")
+[2026-04-03 11:36:50,805] /home/slowman/Desktop/project/Thesis/finn/deps/qonnx/src/qonnx/transformation/extract_conv_bias.py:52: UserWarning: Could not extract bias from node input: "Quant_28_out0"
+[2026-04-03 11:36:50,805] input: "Quant_9_out0"
+[2026-04-03 11:36:50,805] input: "Quant_10_out0"
+[2026-04-03 11:36:50,805] output: "Conv_4_out0"
+[2026-04-03 11:36:50,805] name: "Conv_4"
+[2026-04-03 11:36:50,805] op_type: "Conv"
+[2026-04-03 11:36:50,806] attribute {
+[2026-04-03 11:36:50,806]   name: "dilations"
+[2026-04-03 11:36:50,806]   ints: 2
+[2026-04-03 11:36:50,806]   type: INTS
+[2026-04-03 11:36:50,806] }
+[2026-04-03 11:36:50,806] attribute {
+[2026-04-03 11:36:50,806]   name: "group"
+[2026-04-03 11:36:50,806]   i: 1
+[2026-04-03 11:36:50,806]   type: INT
+[2026-04-03 11:36:50,806] }
+[2026-04-03 11:36:50,806] attribute {
+[2026-04-03 11:36:50,806]   name: "kernel_shape"
+[2026-04-03 11:36:50,806]   ints: 3
+[2026-04-03 11:36:50,806]   type: INTS
+[2026-04-03 11:36:50,806] }
+[2026-04-03 11:36:50,806] attribute {
+[2026-04-03 11:36:50,806]   name: "pads"
+[2026-04-03 11:36:50,806]   ints: 0
+[2026-04-03 11:36:50,806]   ints: 0
+[2026-04-03 11:36:50,806]   type: INTS
+[2026-04-03 11:36:50,806] }
+[2026-04-03 11:36:50,806] attribute {
+[2026-04-03 11:36:50,806]   name: "strides"
+[2026-04-03 11:36:50,807]   ints: 1
+[2026-04-03 11:36:50,807]   type: INTS
+[2026-04-03 11:36:50,807] }
+[2026-04-03 11:36:50,807] 
+[2026-04-03 11:36:50,807]   warnings.warn(f"Could not extract bias from node {n}")
+[2026-04-03 11:36:50,807] /home/slowman/Desktop/project/Thesis/finn/deps/qonnx/src/qonnx/transformation/extract_conv_bias.py:52: UserWarning: Could not extract bias from node input: "Quant_31_out0"
+[2026-04-03 11:36:50,807] input: "Quant_15_out0"
+[2026-04-03 11:36:50,807] input: "Quant_16_out0"
+[2026-04-03 11:36:50,807] output: "Conv_5_out0"
+[2026-04-03 11:36:50,807] name: "Conv_5"
+[2026-04-03 11:36:50,807] op_type: "Conv"
+[2026-04-03 11:36:50,807] attribute {
+[2026-04-03 11:36:50,807]   name: "dilations"
+[2026-04-03 11:36:50,807]   ints: 1
+[2026-04-03 11:36:50,807]   type: INTS
+[2026-04-03 11:36:50,807] }
+[2026-04-03 11:36:50,807] attribute {
+[2026-04-03 11:36:50,807]   name: "group"
+[2026-04-03 11:36:50,808]   i: 1
+[2026-04-03 11:36:50,808]   type: INT
+[2026-04-03 11:36:50,808] }
+[2026-04-03 11:36:50,808] attribute {
+[2026-04-03 11:36:50,808]   name: "kernel_shape"
+[2026-04-03 11:36:50,808]   ints: 1
+[2026-04-03 11:36:50,808]   type: INTS
+[2026-04-03 11:36:50,808] }
+[2026-04-03 11:36:50,808] attribute {
+[2026-04-03 11:36:50,808]   name: "pads"
+[2026-04-03 11:36:50,808]   ints: 0
+[2026-04-03 11:36:50,808]   ints: 0
+[2026-04-03 11:36:50,808]   type: INTS
+[2026-04-03 11:36:50,808] }
+[2026-04-03 11:36:50,808] attribute {
+[2026-04-03 11:36:50,808]   name: "strides"
+[2026-04-03 11:36:50,808]   ints: 1
+[2026-04-03 11:36:50,808]   type: INTS
+[2026-04-03 11:36:50,808] }
+[2026-04-03 11:36:50,808] 
+[2026-04-03 11:36:50,809]   warnings.warn(f"Could not extract bias from node {n}")
+[2026-04-03 11:36:50,809] /home/slowman/Desktop/project/Thesis/finn/deps/qonnx/src/qonnx/transformation/extract_conv_bias.py:52: UserWarning: Could not extract bias from node input: "Quant_32_out0"
+[2026-04-03 11:36:50,809] input: "Quant_11_out0"
+[2026-04-03 11:36:50,809] input: "Quant_12_out0"
+[2026-04-03 11:36:50,809] output: "Conv_6_out0"
+[2026-04-03 11:36:50,809] name: "Conv_6"
+[2026-04-03 11:36:50,809] op_type: "Conv"
+[2026-04-03 11:36:50,809] attribute {
+[2026-04-03 11:36:50,809]   name: "dilations"
+[2026-04-03 11:36:50,809]   ints: 4
+[2026-04-03 11:36:50,809]   type: INTS
+[2026-04-03 11:36:50,809] }
+[2026-04-03 11:36:50,809] attribute {
+[2026-04-03 11:36:50,809]   name: "group"
+[2026-04-03 11:36:50,809]   i: 1
+[2026-04-03 11:36:50,809]   type: INT
+[2026-04-03 11:36:50,809] }
+[2026-04-03 11:36:50,809] attribute {
+[2026-04-03 11:36:50,809]   name: "kernel_shape"
+[2026-04-03 11:36:50,810]   ints: 3
+[2026-04-03 11:36:50,810]   type: INTS
+[2026-04-03 11:36:50,810] }
+[2026-04-03 11:36:50,810] attribute {
+[2026-04-03 11:36:50,810]   name: "pads"
+[2026-04-03 11:36:50,810]   ints: 0
+[2026-04-03 11:36:50,810]   ints: 0
+[2026-04-03 11:36:50,810]   type: INTS
+[2026-04-03 11:36:50,810] }
+[2026-04-03 11:36:50,810] attribute {
+[2026-04-03 11:36:50,810]   name: "strides"
+[2026-04-03 11:36:50,810]   ints: 1
+[2026-04-03 11:36:50,810]   type: INTS
+[2026-04-03 11:36:50,810] }
+[2026-04-03 11:36:50,810] 
+[2026-04-03 11:36:50,810]   warnings.warn(f"Could not extract bias from node {n}")
+[2026-04-03 11:36:50,810] /home/slowman/Desktop/project/Thesis/finn/deps/qonnx/src/qonnx/transformation/extract_conv_bias.py:52: UserWarning: Could not extract bias from node input: "Quant_34_out0"
+[2026-04-03 11:36:50,810] input: "Quant_13_out0"
+[2026-04-03 11:36:50,810] input: "Quant_14_out0"
+[2026-04-03 11:36:50,810] output: "Conv_7_out0"
+[2026-04-03 11:36:50,810] name: "Conv_7"
+[2026-04-03 11:36:50,811] op_type: "Conv"
+[2026-04-03 11:36:50,811] attribute {
+[2026-04-03 11:36:50,811]   name: "dilations"
+[2026-04-03 11:36:50,811]   ints: 4
+[2026-04-03 11:36:50,811]   type: INTS
+[2026-04-03 11:36:50,811] }
+[2026-04-03 11:36:50,811] attribute {
+[2026-04-03 11:36:50,811]   name: "group"
+[2026-04-03 11:36:50,811]   i: 1
+[2026-04-03 11:36:50,811]   type: INT
+[2026-04-03 11:36:50,811] }
+[2026-04-03 11:36:50,811] attribute {
+[2026-04-03 11:36:50,811]   name: "kernel_shape"
+[2026-04-03 11:36:50,811]   ints: 3
+[2026-04-03 11:36:50,811]   type: INTS
+[2026-04-03 11:36:50,811] }
+[2026-04-03 11:36:50,811] attribute {
+[2026-04-03 11:36:50,812]   name: "pads"
+[2026-04-03 11:36:50,812]   ints: 0
+[2026-04-03 11:36:50,812]   ints: 0
+[2026-04-03 11:36:50,812]   type: INTS
+[2026-04-03 11:36:50,812] }
+[2026-04-03 11:36:50,812] attribute {
+[2026-04-03 11:36:50,812]   name: "strides"
+[2026-04-03 11:36:50,812]   ints: 1
+[2026-04-03 11:36:50,812]   type: INTS
+[2026-04-03 11:36:50,812] }
+[2026-04-03 11:36:50,812] 
+[2026-04-03 11:36:50,812]   warnings.warn(f"Could not extract bias from node {n}")
+[2026-04-03 11:36:50,844] /home/slowman/Desktop/project/Thesis/finn/deps/qonnx/src/qonnx/transformation/gemm_to_matmul.py:57: UserWarning: The GemmToMatMul transformation only offers explicit support for version 9 of the Gemm node, but the ONNX version of the supplied model is 20. Thus the transformation may fail or return incomplete results.
+[2026-04-03 11:36:50,844]   warnings.warn(
+[2026-04-03 12:08:59,813] handle_msg[f2a3e923-318e-4673-9888-e9f0e86e9f71]({'header': {'date': datetime.datetime(2026, 4, 3, 12, 2, 26, 264000, tzinfo=tzutc()), 'msg_id': '79927512-b686-4713-baa9-6d4f2f2c1ea2', 'msg_type': 'comm_msg', 'session': '30e971d6-6d5e-4a4a-a7c3-257ce40f1537', 'username': '', 'subshell_id': None, 'version': '5.2'}, 'msg_id': '79927512-b686-4713-baa9-6d4f2f2c1ea2', 'msg_type': 'comm_msg', 'parent_header': {}, 'metadata': {}, 'content': {'comm_id': 'f2a3e923-318e-4673-9888-e9f0e86e9f71', 'data': {'method': 'request_states'}}, 'buffers': []})
+[2026-04-03 12:08:59,859] handle_msg[e509d561-3967-496a-8551-d2c03aa18297]({'header': {'date': datetime.datetime(2026, 4, 3, 12, 2, 31, 121000, tzinfo=tzutc()), 'msg_id': 'f557fc1e-5caf-4014-82ba-d5a1b030ec53', 'msg_type': 'comm_msg', 'session': 'a59973dc-dcc6-4759-b9f5-e0902b3cc148', 'username': '', 'subshell_id': None, 'version': '5.2'}, 'msg_id': 'f557fc1e-5caf-4014-82ba-d5a1b030ec53', 'msg_type': 'comm_msg', 'parent_header': {}, 'metadata': {}, 'content': {'comm_id': 'e509d561-3967-496a-8551-d2c03aa18297', 'data': {'method': 'request_states'}}, 'buffers': []})
+[2026-04-03 12:08:59,875] Using selector: EpollSelector

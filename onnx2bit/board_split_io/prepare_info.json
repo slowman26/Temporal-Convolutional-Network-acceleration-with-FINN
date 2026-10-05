@@ -1,0 +1,23 @@
+{
+  "num_samples": 4500,
+  "raw_input_shape": [
+    4500,
+    1,
+    1,
+    140
+  ],
+  "hw_input_shape": [
+    4500,
+    1,
+    140,
+    1
+  ],
+  "labels_unique": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "mt_cmp": ">="
+}

@@ -1,0 +1,10 @@
+{
+  "child_model": "/home/slowman/Desktop/project/Thesis/finn/notebooks/pytorch-tcn/finn_build_pynqz2/intermediate_models/step_set_fifo_depths.onnx",
+  "num_samples": 50,
+  "acc_pc_raw": 1.0,
+  "acc_bd_raw": 0.3,
+  "agree_raw": 0.3,
+  "acc_pc_final": 1.0,
+  "acc_bd_final": 0.0,
+  "agree_final": 0.0
+}
