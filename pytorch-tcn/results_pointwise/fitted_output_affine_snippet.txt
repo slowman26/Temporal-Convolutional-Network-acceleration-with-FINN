@@ -1,0 +1,20 @@
+# ============================================================
+# Fitted FPGA output affine correction
+# ============================================================
+APPLY_OUTPUT_AFFINE = True
+
+OUTPUT_A = np.array(
+    [-0.07402808219194412, -0.0904395803809166, -0.005195338744670153, -0.020179055631160736, -0.0018761708633974195],
+    dtype=np.float32,
+)
+OUTPUT_B = np.array(
+    [0.8005033135414124, -0.23042087256908417, -0.8295820355415344, -0.4048384130001068, -2.0334086418151855],
+    dtype=np.float32,
+)
+
+
+def postprocess_logits(logits_raw):
+    logits_raw = np.asarray(logits_raw, dtype=np.float32).reshape(NUM_CLASSES)
+    if APPLY_OUTPUT_AFFINE:
+        return logits_raw * OUTPUT_A + OUTPUT_B
+    return logits_raw

@@ -1,0 +1,45 @@
+{
+  "OUTPUT_A": [
+    -0.07402808219194412,
+    -0.0904395803809166,
+    -0.005195338744670153,
+    -0.020179055631160736,
+    -0.0018761708633974195
+  ],
+  "OUTPUT_B": [
+    0.8005033135414124,
+    -0.23042087256908417,
+    -0.8295820355415344,
+    -0.4048384130001068,
+    -2.0334086418151855
+  ],
+  "metadata": {
+    "target_source": "qonnx",
+    "fit_mode": "all",
+    "fit_ratio": 0.7,
+    "num_samples": 100,
+    "num_fit_samples": 100,
+    "num_eval_samples": 100,
+    "calib_txt": "/home/slowman/Desktop/project/Thesis/finn/notebooks/pytorch-tcn/datasets/ECG5000/ECG5000_val_split.txt",
+    "qonnx_path": "/home/slowman/Desktop/project/Thesis/finn/notebooks/pytorch-tcn/onnx_exports/ecg5000_pointwise_qtcn_qonnx_clean_shaped_fixed.onnx",
+    "checkpoint_path": "/home/slowman/Desktop/project/Thesis/finn/notebooks/pytorch-tcn/new_version/best_qtcn_model.pth",
+    "fpga_results_dir": "/home/slowman/Desktop/project/Thesis/finn/notebooks/pytorch-tcn/results_pointwise",
+    "raw_accuracy_all": 0.37,
+    "fitted_accuracy_all": 0.59,
+    "target_accuracy_all": 0.93,
+    "raw_target_agreement_all": 0.38,
+    "fitted_target_agreement_all": 0.61,
+    "raw_diff_stats_all": {
+      "max_abs": 4.5701141357421875,
+      "mean_abs": 1.9722092151641846,
+      "median_abs": 1.8676300048828125,
+      "p95_abs": 4.03540573120117
+    },
+    "fitted_diff_stats_all": {
+      "max_abs": 2.9508023262023926,
+      "mean_abs": 0.8057456016540527,
+      "median_abs": 0.6333239674568176,
+      "p95_abs": 1.996356153488159
+    }
+  }
+}
