@@ -155,7 +155,7 @@ tcn2pynq
 
 If the transformation is successful, the output should be similar to:
 
-![PyTorch to ONNX output](images/pytorch2onnx_output.png)
+![PyTorch to ONNX output](images/pytorch2onnx_output.svg)
 
 6. Then run:
 
@@ -171,7 +171,7 @@ warnings.filterwarnings("ignore")
 
 If the transformation is successful, the output will show that **25 steps** are executed in total and the FINN build finishes successfully.
 
-![FINN transformation output](images/onnx2bit_output.png)
+![FINN transformation output](images/onnx2bit_output.svg)
 
 7. Finally, find the `deploy` folder in the generated project. Zip the folder and upload it to the PYNQ-Z2 board.
 
@@ -186,7 +186,7 @@ to measure the latency and classification accuracy.
 
 The final output should be similar to:
 
-![FPGA test result](images/fpga_test_output.png)
+![FPGA test result](images/fpga_test_output.svg)
 
 
 ## Repository Structure
