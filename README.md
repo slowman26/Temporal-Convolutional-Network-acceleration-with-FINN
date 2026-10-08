@@ -114,6 +114,81 @@ All evaluated W4A4 implementations met the 100 MHz timing target.
 | Folding 3 | 0.201 | 0.000 | 0.026 | 0.000 | Yes |
 | Folding 4 | 0.610 | 0.000 | 0.022 | 0.000 | Yes |
 
+## Project Workflow
+
+1. Train the floating-point model with:
+
+```text
+/pytorch-tcn/new_version/train.py
+```
+
+The floating-point model is used as the baseline.
+
+2. Change the datatype in:
+
+```text
+/pytorch-tcn/new_version/newnet.py
+```
+
+to the desired quantization configuration, such as W8A8, W4A4, or W2A4.
+
+3. Train the quantized model with:
+
+```text
+/pytorch-tcn/new_version/train.py
+```
+
+Remember to change the corresponding datatype configuration in `train.py` as well.
+
+4. Copy the following folders to `/finn/notebooks` on Linux:
+
+```text
+onnx2bit
+tcn2pynq
+```
+
+5. Create a Jupyter notebook in the FINN environment and run:
+
+```python
+!cd /home/slowman/Desktop/project/Thesis/finn/notebooks/onnx2bit && python pytorch2onnx.py
+```
+
+If the transformation is successful, the output should be similar to:
+
+![PyTorch to ONNX output](images/pytorch2onnx_output.png)
+
+6. Then run:
+
+```python
+%cd /home/slowman/Desktop/project/Thesis/finn/notebooks/onnx2bit
+
+import warnings
+warnings.filterwarnings("ignore")
+
+%pdb on
+%run onnx2bit.py
+```
+
+If the transformation is successful, the output will show that **25 steps** are executed in total and the FINN build finishes successfully.
+
+![FINN transformation output](images/onnx2bit_output.png)
+
+7. Finally, find the `deploy` folder in the generated project. Zip the folder and upload it to the PYNQ-Z2 board.
+
+After unzipping the deployment package on the board, use:
+
+```text
+fpga_test
+fpga_test_batch
+```
+
+to measure the latency and classification accuracy.
+
+The final output should be similar to:
+
+![FPGA test result](images/fpga_test_output.png)
+
+
 ## Repository Structure
 
 ```text
