@@ -65,7 +65,7 @@ The generated accelerators were deployed and evaluated on a **PYNQ-Z2 (XC7Z020)*
 
 ### Quantization and Inference Performance
 
-| Configuration | Platform | Accuracy | Batch | Latency / Sample (ms) | Throughput (FPS) |
+| Configuration | Platform | Accuracy | Batch | Latency(end to end) / Sample (ms) | Throughput (FPS) |
 |---|---|---:|---:|---:|---:|
 | W8A8 | FPGA | 92.53% | 1 | 5.043 | 198.29 |
 | W4A4 | FPGA | 91.16% | 1 | 4.979 | 200.86 |
