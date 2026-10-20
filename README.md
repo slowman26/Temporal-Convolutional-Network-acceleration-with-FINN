@@ -81,6 +81,31 @@ The generated accelerators were deployed and evaluated on a **PYNQ-Z2 (XC7Z020)*
 For batch size 1, **Folding 3 achieved the lowest measured latency of 3.881 ms per sample**.  
 With batching, Folding 4 reached an effective throughput of **628.11 samples/s** at batch size 348.
 
+
+### CPU and FPGA Accelerator Latency Comparison
+
+The following table compares the batch-1 inference latency and throughput of the FP32 model on the PC CPU and the quantized models deployed on the PYNQ-Z2 FPGA.
+
+| Platform | Measurement | Precision | Latency (ms) | Throughput (samples/s) |
+|---|---|---|---:|---:|
+| PC CPU | PyTorch forward pass | FP32 | 0.630 | 1586.95 |
+| PYNQ-Z2 | Accelerator execution | W8A8 | 1.408 | 710.27 |
+| PYNQ-Z2 | Accelerator execution | W4A4 | 1.415 | 706.86 |
+| PYNQ-Z2 | Accelerator execution | W2A4 | 1.415 | 706.70 |
+| PYNQ-Z2 | Accelerator execution | W4A4 Folding 1 | 0.585 | 1709.61 |
+| PYNQ-Z2 | Accelerator execution | W4A4 Folding 2 | 0.442 | 2264.90 |
+| PYNQ-Z2 | Accelerator execution | W4A4 Folding 3 | 0.366 | 2730.40 |
+| PYNQ-Z2 | Accelerator execution | **W4A4 Folding 4** | **0.345** | **2899.63** |
+
+**Measurement definitions:**
+
+- **CPU latency:** Includes only the PyTorch forward-pass execution time.
+- **FPGA accelerator execution latency:** Measured around `execute_on_buffers()`. Includes accelerator execution and DMA transfers between shared device memory and the accelerator, but excludes host-side buffer copying, output unpacking, unfolding, and post-processing.
+
+The W4A4 Folding 4 implementation achieved approximately **1.83× higher accelerator execution throughput** than the FP32 CPU forward pass. This comparison does not represent end-to-end system speedup.
+
+
+
 ### FPGA Resource Utilization
 
 Resource utilization for the W4A4 accelerator under different folding configurations:
